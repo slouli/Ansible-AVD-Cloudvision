@@ -2,16 +2,37 @@
 port_profiles:
   COMPUTE:
     mode: trunk
-    vlans: "2,3,4,2555,2556"
+    vlans: "30,31,45,87,92,2555,2556"
   STORAGE:
     mode: trunk
     vlans: "2556"
+  TENANT_A_B:
+    mode: trunk
+    vlans: "110-111,210-211"
+  TENANT_A:
+    mode: access
+    vlans: "110"
+  TENANT_B:
+    mode: trunk
+    vlans: "210-211"
 
 servers:
   POD-1-COMPUTE:
     rack: rack1
     adapters:
       - type: nic
-        switch_ports: [Ethernet1, Ethernet2]
-        switches: [WL-LEAF1, WL-LEAF2]
+        server_ports: [HCI,HCI]
+        switch_ports: [Ethernet5,Ethernet5]
+        switches: [WL-LEAF1,WL-LEAF2]
         profile: COMPUTE
+  POD-1-STORAGE:
+    rack: rack1
+    adapters:
+      - server_ports: [HCI,HCI]
+        switch_ports: [Ethernet6,Ethernet6]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: STORAGE
+        port_channel:
+          state: present
+          description: PortChannel16
+          mode: active
