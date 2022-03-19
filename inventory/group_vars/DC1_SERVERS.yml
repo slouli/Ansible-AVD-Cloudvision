@@ -1,5 +1,11 @@
 ---
 port_profiles:
+  COMPUTE:
+    mode: trunk
+    vlans: "2,3,4,2555,2556"
+  STORAGE:
+    mode: trunk
+    vlans: "2556"
   TENANT_A_B:
     mode: trunk
     vlans: "110-111,210-211"
@@ -11,6 +17,13 @@ port_profiles:
     vlans: "210-211"
 
 servers:
+  POD-1-COMPUTE:
+    rack: rack1
+    adapters:
+      - type: nic
+        switch_ports: [Ethernet1, Ethernet2]
+        switches: [WL-LEAF1, WL-LEAF2]
+        profile: COMPUTE
   server01:
     rack: RackA
     adapters:
