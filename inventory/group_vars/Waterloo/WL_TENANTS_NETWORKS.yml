@@ -5,6 +5,7 @@ tenants:
   # Tenant A Specific Information - VRFs / VLANs
   OPENTEXT:
     mac_vrf_vni_base: 10000
+    enable_mlag_ibgp_peering_vrfs: false
     vrfs:
       OPENTEXT_CORP_Zone:
         vrf_vni: 10

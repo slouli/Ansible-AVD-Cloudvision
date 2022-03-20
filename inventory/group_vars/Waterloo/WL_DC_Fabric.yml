@@ -43,15 +43,15 @@ spine:
 l3leaf:
   defaults:
     platform: vEOS-LAB
-    loopback_ipv4_pool: 192.168.100.0/24
+    loopback_ipv4_pool: 192.168.101.0/24
     loopback_ipv4_offset: 10
-    vtep_loopback_ipv4_pool: 192.168.101.0/24
+    vtep_loopback_ipv4_pool: 192.168.102.0/24
     uplink_interfaces: ['Ethernet1', 'Ethernet2']
     uplink_switches: ['WL-SPINE1', 'WL-SPINE2']
-    uplink_ipv4_pool: 172.31.255.0/24
+    uplink_ipv4_pool: 192.168.100.0/24
     mlag_interfaces: [ Ethernet3, Ethernet4 ]
-    mlag_peer_ipv4_pool: 192.168.102.0/24
-    mlag_peer_l3_ipv4_pool: 192.168.103.0/24
+    mlag_peer_ipv4_pool: 192.168.103.0/24
+    mlag_peer_l3_ipv4_pool: 192.168.104.0/24
     virtual_router_mac_address: 00:1c:73:00:dc:01
     bgp_defaults:
       - 'no bgp default ipv4-unicast'
