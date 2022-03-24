@@ -1,0 +1,45 @@
+---
+# DC1 Tenants Networks
+# Documentation of Tenant specific information - Vlans/VRFs
+tenants:
+  # Tenant A Specific Information - VRFs / VLANs
+  OPENTEXT:
+    mac_vrf_vni_base: 10000
+    enable_mlag_ibgp_peering_vrfs: false
+    vrfs:
+      OPENTEXT_CORP_Zone:
+        vrf_vni: 10000
+        #Steve: Commenting out VTEP Diagnostics. Don't know what this is.
+        #vtep_diagnostic:
+        #  loopback: 100
+        #  loopback_ip_range: 10.255.1.0/24
+        svis:
+          30:
+            name: Waterloo LAN
+            tags: [opzone]
+            enabled: true
+            ip_address_virtual: 10.1.10.1/24
+          31:
+            name: Waterloo Finance
+            tags: [opzone]
+            enabled: true
+            ip_address_virtual: 10.1.11.1/24
+          801:
+            name: Waterloo WAN
+            tags: [wan]
+            enabled: true
+            nodes:
+              WL-LEAF3:
+                ip_address: 10.2.801.2/24
+              WL-LEAF4:
+                ip_address: 10.2.801.3/24
+    l2vlans:
+      160:
+        name: Compute
+        tags: [opzone]
+      161:
+        name: Tenant_A_NFS
+        tags: [nfs]
+      162:
+        name: Tenant_B_NFS
+        tags: [nfs]

@@ -1,0 +1,35 @@
+---
+custom_structured_configuration_vxlan_interface:
+  Vxlan1:
+    vxlan:
+      source_interface: Loopback1
+      udp_port: 4789
+      vlans:
+        2-1000:
+          vni: 10002-11000
+      vrfs:
+        opentext:
+          vni: 10000
+
+custom_structured_configuration_router_bgp:
+  vlan_aware_bundles:
+    opentext:
+      rd: "{{ switch.router_id }}:1"
+      route_targets:
+        both:
+          - "1:1"
+      redistribute_routes:
+        - learned
+      vlan: 2-1000
+  vrfs:
+    opentext_corp:
+      rd: "{{ switch.router_id }}:1"
+      route_targets:
+        import:
+          evpn:
+            - "10000:10000"
+        export:
+          evpn:
+            - "10000:10000"
+      redistribute_routes:
+        connected:

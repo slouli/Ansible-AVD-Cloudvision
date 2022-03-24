@@ -44,10 +44,16 @@ all:
                           ansible_host: 10.2.98.20
                         WL-LEAF2:
                           ansible_host: 10.2.98.21
-            WL_TENANTS_NETWORKS:
+                    WL-POD2:
+                      hosts:
+                        WL-LEAF3:
+                          ansible_host: 10.2.98.22
+                        WL-LEAF4:
+                          ansible_host: 10.2.98.23
+            WL_SERVERS:
               children:
                 WL_LEAFS:
-            WL_SERVERS:
+            WL_VXLAN:
               children:
                 WL_LEAFS:
     DC1:

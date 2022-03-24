@@ -1,0 +1,9 @@
+---
+custom_structured_configuration_port_channel_interfaces:  
+  Port-Channel1000:
+    description: TEST_SWITCH_SPECIFIC_CONFIG
+    type: switched
+    shutdown: false
+    mode: trunk
+    vlans: 2556
+    mlag: 1000

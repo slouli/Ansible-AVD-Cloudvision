@@ -19,7 +19,7 @@ bgp_peer_groups:
 # OT Spine Switches
 spine:
   defaults:
-    platform: vEOS-LAB
+    platform: DCS-7050CX3-32S
     bgp_as: 65001
     loopback_ipv4_pool: 192.168.100.0/24
     bgp_defaults:
@@ -42,14 +42,14 @@ spine:
 
 l3leaf:
   defaults:
-    platform: vEOS-LAB
+    platform: DCS-7050SX3-48YC8
     loopback_ipv4_pool: 192.168.101.0/24
     loopback_ipv4_offset: 10
     vtep_loopback_ipv4_pool: 192.168.102.0/24
-    uplink_interfaces: ['Ethernet1', 'Ethernet2']
+    uplink_interfaces: ['Ethernet49/1', 'Ethernet50/1']
     uplink_switches: ['WL-SPINE1', 'WL-SPINE2']
     uplink_ipv4_pool: 192.168.100.0/24
-    mlag_interfaces: [ Ethernet3, Ethernet4 ]
+    mlag_interfaces: [ Ethernet51/1, Ethernet52/1 ]
     mlag_peer_ipv4_pool: 192.168.103.0/24
     mlag_peer_l3_ipv4_pool: 192.168.104.0/24
     virtual_router_mac_address: 00:1c:73:00:dc:01
@@ -60,6 +60,11 @@ l3leaf:
       - 'graceful-restart'
     spanning_tree_mode: mstp
     spanning_tree_priority: 16384
+    #LACP_PORT_ID_RANGE ONLY AFFECTS UPLINK PORT-CHANNELS
+    #lacp_port_id_range:
+    #  enabled: true
+    #  size: 10000
+    #  offset: 10
   node_groups:
     WL-POD1:
       bgp_as: 65101
@@ -72,6 +77,17 @@ l3leaf:
           id: 2
           mgmt_ip: 10.2.98.21/24
           uplink_switch_interfaces: [Ethernet2, Ethernet2]
+    WL-POD2:
+      bgp_as: 65102
+      nodes:
+        WL-LEAF3:
+          id: 3
+          mgmt_ip: 10.2.98.22/24
+          uplink_switch_interfaces: [Ethernet3, Ethernet3]
+        WL-LEAF4:
+          id: 4
+          mgmt_ip: 10.2.98.23/24
+          uplink_switch_interfaces: [Ethernet4, Ethernet4]
 
 #### Override for vEOS Lab Caveats ####
 
@@ -80,7 +96,7 @@ l3leaf:
 # Refer to design guide
 
 # Update p2p mtu 9000 -> 1500
-p2p_uplinks_mtu: 1500
+p2p_uplinks_mtu: 9214
 
 # Adjust default bfd values
 bfd_multihop:
