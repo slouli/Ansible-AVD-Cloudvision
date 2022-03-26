@@ -50,10 +50,23 @@ all:
                           ansible_host: 10.2.98.22
                         WL-LEAF4:
                           ansible_host: 10.2.98.23
+                    WL-POD3:
+                      hosts:
+                        WL-LEAF5:
+                          ansible_host: 10.2.98.24
+                        WL-LEAF6:
+                          ansible_host: 10.2.98.25
+            #ALTERNATIVE TO CUSTOM_STRUCUTRED VXLAN/VLAN CONFIGURATION
+            #WL_TENANTS_NETWORKS:
+            #  children:
+            #    WL_LEAFS:
             WL_SERVERS:
               children:
                 WL_LEAFS:
             WL_VXLAN:
+              children:
+                WL_LEAFS:
+            WL_VLANS:
               children:
                 WL_LEAFS:
     DC1:

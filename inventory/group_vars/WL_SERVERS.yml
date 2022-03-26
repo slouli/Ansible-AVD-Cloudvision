@@ -1,0 +1,76 @@
+---
+port_profiles:
+  COMPUTE:
+    mode: trunk
+    vlans: "30,31,45,87,92,2555,2556,3000"
+    native_vlan: 30
+  STORAGE:
+    mode: trunk
+    vlans: "2555-2556"
+    port_channel:
+      mode: active
+      description: HCI
+
+servers:
+  POD-1-COMPUTE:
+    rack: rack1
+    adapters:
+      - type: nic
+        server_ports: [NODE1,NODE1]
+        switch_ports: [Ethernet10,Ethernet10]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: COMPUTE
+      - type: nic
+        server_ports: [NODE2,NODE2]
+        switch_ports: [Ethernet11,Ethernet11]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: COMPUTE
+      - type: nic
+        server_ports: [NODE3,NODE3]
+        switch_ports: [Ethernet12,Ethernet12]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: COMPUTE
+      - type: nic
+        server_ports: [NODE4,NODE4]
+        switch_ports: [Ethernet13,Ethernet13]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: COMPUTE
+  POD-1-STORAGE:
+    rack: rack1
+    adapters:
+      - server_ports: [NODE1,NODE1]
+        switch_ports: [Ethernet1,Ethernet1]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: STORAGE
+      - server_ports: [NODE2,NODE2]
+        switch_ports: [Ethernet2,Ethernet2]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: STORAGE
+      - server_ports: [NODE3,NODE3]
+        switch_ports: [Ethernet3,Ethernet3]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: STORAGE
+      - server_ports: [NODE4,NODE4]
+        switch_ports: [Ethernet4,Ethernet4]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: STORAGE
+      - server_ports: [NODE5,NODE5]
+        switch_ports: [Ethernet5,Ethernet5]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: STORAGE
+      - server_ports: [NODE6,NODE6]
+        switch_ports: [Ethernet6,Ethernet6]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: STORAGE
+      - server_ports: [NODE7,NODE7]
+        switch_ports: [Ethernet7,Ethernet7]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: STORAGE
+      - server_ports: [NODE8,NODE8]
+        switch_ports: [Ethernet8,Ethernet58]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: STORAGE
+      - server_ports: [NODE9,NODE9]
+        switch_ports: [Ethernet9,Ethernet9]
+        switches: [WL-LEAF1,WL-LEAF2]
+        profile: STORAGE

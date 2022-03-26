@@ -40,7 +40,7 @@
         state: present
         cv_collection: v3
 
-- name: Manage Arista EOS EVPN/VXLAN Configuration
+- name: Manage WL_DC_Fabric EOS EVPN/VXLAN Configuration
   hosts: WL_DC_Fabric
   connection: local
   gather_facts: false

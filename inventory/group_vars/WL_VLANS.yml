@@ -1,0 +1,30 @@
+---
+#L2VLANS
+custom_structured_configuration_vlans:
+  2:
+    name: DMZ
+  31:
+    name: Waterloo Finance
+  92:
+    name: Voice
+  2108:
+    name: ESX Management
+
+#L3VLANS
+custom_structured_configuration_vlan_interfaces:
+  Vlan31:
+    description: Waterloo Finance
+    shutdown: false
+    vrf: OPENTEXT-CORP
+    ip_address_virtual: 192.168.14.1/24
+  Vlan92:
+    description: Voice
+    shutdown: false
+    vrf: OPENTEXT-CORP
+    ip_address_virtual: 10.2.93.1/24
+  Vlan2108:
+    description: ESX Management
+    shutdown: false
+    vrf: OPENTEXT-CORP
+    ip_address_virtual: 10.2.109.2/24
+    
